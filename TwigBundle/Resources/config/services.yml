@@ -1,0 +1,5 @@
+services:
+    twig.extension.tuyautwigext:
+        class: Perso\TwigBundle\Twig\Extension\TwigExtension
+        tags:
+            - { name: twig.extension }
