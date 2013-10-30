@@ -16,10 +16,42 @@ class Slug {
         return $this;
     }
 
+    /**
+     * Remet l'attribut a zéro
+     */
+    public function clear_string() {
+        $this->string = '';
+    }
+
+    /**
+     * Renvoie true si l'attibut est plein , false si il est vide
+     * @return type
+     */
+    public function is_empty() {
+        return empty($this->string);
+    }
+
+    /**
+     * Remet a zéro si l'attribut string est rempli
+     */
+    public function clear_if_filled() {
+        if ($this->is_empty())
+            $this->clear_string();
+    }
+
+    /**
+     * Récupère le slug
+     * @return type
+     */
     public function getMySlug() {
         return $this->slugmachine($this->enleve_accents($this->string));
     }
 
+    /**
+     * Fais le sale boulot
+     * @param type $str
+     * @return type
+     */
     private function slugmachine($str) {
         // remplacer ce qui n'est pas une letre par un tiret
         $text = preg_replace('~[^\\pL\d]+~u', '-', $str);
@@ -39,6 +71,11 @@ class Slug {
         return $text;
     }
 
+    /**
+     * Enleve les accents de la chaine passée en parametres
+     * @param type $str
+     * @return type
+     */
     private function enleve_accents($str) {
         $a = array('À', 'Á', 'Â', 'Ã', 'Ä', 'Å', 'Æ', 'Ç', 'È', 'É', 'Ê', 'Ë', 'Ì', 'Í', 'Î', 'Ï', 'Ð',
             'Ñ', 'Ò', 'Ó', 'Ô', 'Õ', 'Ö', 'Ø', 'Ù', 'Ú', 'Û', 'Ü', 'Ý', 'ß', 'à', 'á', 'â', 'ã',

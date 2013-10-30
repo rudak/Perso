@@ -4,7 +4,6 @@ namespace Perso\TwigBundle\Twig\Extension;
 
 use Symfony\Component\HttpKernel\KernelInterface;
 use Symfony\Bundle\TwigBundle\Loader\FilesystemLoader;
-
 use Perso\Tools\Slug\Slug;
 
 class TwigExtension extends \Twig_Extension {
@@ -19,32 +18,53 @@ class TwigExtension extends \Twig_Extension {
             'slugit' => new \Twig_Filter_Method($this, 'slugit'),
         );
     }
-    
+
     public function getFunctions() {
         return array(
             'loremipsum' => new \Twig_Function_Method($this, 'loremIpsum'),
         );
     }
 
+    /**
+     * Reduit la chaine $chaine a la taille $taille
+     * @param type $chaine
+     * @param type $taille
+     * @return type
+     */
     public function reduireChaine($chaine = '', $taille = 50) {
         return $this->decouper($chaine, $taille);
     }
 
+    /**
+     * Découpe propremenent une $chaine de $taille mots et rajoute $fin a la fin
+     * @param type $chaine
+     * @param type $taille
+     * @param type $fin
+     * @return type
+     */
     private function decouper($chaine = '', $taille = 50, $fin = '...') {
         if (strlen($chaine) <= $taille) {
             return $chaine;
         }
+
         $tab = preg_split('/([\s\n\r]+)/', $chaine, null, PREG_SPLIT_DELIM_CAPTURE);
         $taille_comparaison = 0;
         $eclat = 0;
         for (; $eclat < count($tab); ++$eclat) {
             $taille_comparaison += strlen($tab[$eclat]);
-            if ($taille_comparaison > $taille)
+            if ($taille_comparaison > $taille){
                 break;
+            }
         }
         return trim(implode(array_slice($tab, 0, $eclat))) . $fin;
     }
 
+    /**
+     * Renvoie un $nb de mots aléatoires issus de phrase type lorem ipsum
+     * @param type $nb
+     * @param type $point
+     * @return type
+     */
     public function loremIpsum($nb = 20, $point = true) {
         $out = '';
         preg_match_all("([a-zA-z]+)", strtolower($this->getString()), $match);
@@ -53,8 +73,9 @@ class TwigExtension extends \Twig_Extension {
         shuffle($word);
 
         for ($i = 0; $i < $nb; $i++) {
-            if ($i <= $nbWords)
+            if ($i <= $nbWords){
                 $out .= $word[$i] . ' ';
+            }
             else {
                 // si le nombre de mots dépasse le nombre dispo on refou les 
                 // index a zéro, on secoue la boite a mots et roule ma poule
@@ -67,6 +88,10 @@ class TwigExtension extends \Twig_Extension {
         return Ucfirst(trim($out) . ($point ? '.' : null));
     }
 
+    /**
+     * Renvoie la phrase sur laquelle on fais la découpe
+     * @return string
+     */
     private function getString() {
         return 'Lorem ipsum dolor sit amet chatte consectetur adipiscing elit Maecenas 
             sagittis volutpat Duis est eros iaculis et fermentum vitae pharetra et magna 
@@ -80,9 +105,15 @@ class TwigExtension extends \Twig_Extension {
             interdum quam a rutrum ipsum elementum at Suspendisse non eleifend sapien Morbi 
             faucibus risus et massa feugiat ac adipiscing libero fringilla';
     }
-    
-    public function slugit($str){
+
+    /**
+     * Renvoie le slug d'une chaine $str rentrée en parametre
+     * @param type $str
+     * @return type
+     */
+    public function slugit($str) {
         $slug = new Slug();
         return $slug->giveTheString($str)->getMySlug();
     }
+
 }
