@@ -37,7 +37,11 @@ class SecurityChecker {
     }
 
     /**
-     * Ne laisse passer que mes tags autorisés et vire le reste
+     * Ne laisse passer que mes tags autorisés et vire le reste grace a une 
+     * méthode de bourrin ! et oui !  :)
+     * a refaire mieux plus tard donc
+     * 
+     * TODO : bah ..tout ca !  :)
      * 
      * @param type $str
      * @return type
