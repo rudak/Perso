@@ -1,6 +1,4 @@
 #Perso
-=====
-
 Bundle perso avec deux trois petits trucs qui me servent ici et la.
 
 Pour ajouter l'extension de twig dans le kernel :
@@ -19,8 +17,6 @@ Ensuite on peut utiliser :
     -loremipsum : Renvoie du texte LoremIpsum a la volée
 
 #Tools
-=====
-
 Il y a une classe de compression d'image bien utile et facile à utiliser dans le 
 dossier Classes => ResizeImage.
 
@@ -41,10 +37,7 @@ Et ensuite le code est assez simple, voici un exemple de méthode tres simple :
 Voila, rien de plus, l'image est compressée et remplace désormais l'ancienne.
 
 #Views
-=====
-
 ##Mentions légales
-
 J'ai mis une vue correspondant à une page de mentions légales, c'est pratique vu qu'elle est assez générique pour etre collée un peu partout. Il faut juste lui envoyer un tableau rempli avec ce qu'il faut et en avant...
 Voila les arguments à faire passer à la vue :
 
