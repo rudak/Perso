@@ -37,24 +37,20 @@ class SecurityChecker {
     }
 
     /**
-     * Ne laisse passer que mes tags autorisés et vire le reste grace a une 
-     * méthode de bourrin ! et oui !  :)
-     * a refaire mieux plus tard donc
-     * 
-     * TODO : bah ..tout ca !  :)
+     * Ne laisse passer que mes tags autorisés et vire le reste .
      * 
      * @param type $str
      * @return type
      */
     public static function clear_my_tags($str) {
-        $str = self::clear_bad_tags($str);        
-        $str = self::clear_bad_tags($str);
-        return strip_tags($str, '<code><span><div><label><a><br><p><b><i><del><strike><u><img><video><audio><iframe><object><embed><param><blockquote><mark><cite><small><ul><ol><li><hr><dl><dt><dd><sup><sub><big><pre><code><figure><figcaption><strong><em><table><tr><td><th><tbody><thead><tfoot><h1><h2><h3><h4><h5><h6>');
+        $str = self::tags_autorises($str);
+        $str = self::supprimer_tags_vides($str);
+        $str = self::multiples_espaces($str);
+        $str = self::mise_en_forme($str);
+        return $str;
     }
 
-    public static function clear_bad_tags($content) {
-        $content = str_replace("<p></p>", "", $content);        
-        $content = str_replace("<span></span>", "", $content);
+    private static function mise_en_forme($content) {
         $content = str_replace("<br></p>", "</p>", $content);
         $content = str_replace("</p><p>", "</p>\n<p>", $content);
 
@@ -71,6 +67,28 @@ class SecurityChecker {
         $content = str_replace("\n\n", "\n", $content);
 
         return $content;
+    }
+
+    private static function supprimer_tags_vides($result) {
+        $regexps = array(
+            '~<(\w+)\b[^\>]*>\s*</\\1>~',
+            '~<\w+\s*/>~'
+        );
+
+        do {
+            $string = $result;
+            $result = preg_replace($regexps, '', $string);
+        } while ($result != $string);
+
+        return $result;
+    }
+
+    private static function multiples_espaces($string) {
+        return trim(preg_replace('/ {2,}/', ' ', $string));
+    }
+
+    private static function tags_autorises($str) {
+        return strip_tags($str, '<code><span><div><label><a><br><p><b><i><del><strike><u><img><video><audio><iframe><object><embed><param><blockquote><mark><cite><small><ul><ol><li><hr><dl><dt><dd><sup><sub><big><pre><code><figure><figcaption><strong><em><table><tr><td><th><tbody><thead><tfoot><h1><h2><h3><h4><h5><h6>');
     }
 
 }
