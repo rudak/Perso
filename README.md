@@ -12,9 +12,12 @@ Ensuite on peut utiliser :
     -reduce : Réduire une chaine
     -slugit : Transformer une chaine en slug
 
-    Ces fonctions :
+    Ces fonctions :    
     
-    -loremipsum : Renvoie du texte LoremIpsum a la volée
+    ##loremipsum
+    La fonction loremipsum(nb,point) permet de retourner dynamiquement un nombre 
+    de mots aléatoirement piochés dans les phrases typiques de Lorem Ipsum.
+    
 
 #Tools
 Il y a une classe de compression d'image bien utile et facile à utiliser dans le 
@@ -72,3 +75,4 @@ Et dans la vue contenant le reste de votre site vous pouvez faire un include de 
     {% include '@vues_perso/mentions-legales.html.twig' %}
 
 Et c'est tout. C'est presque plus long à lire qu'à mettre en place...
+
