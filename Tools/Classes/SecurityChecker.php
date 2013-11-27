@@ -63,6 +63,12 @@ class SecurityChecker {
         $content = str_replace("</h2><p>", "</h2>\n<p>", $content);
         $content = str_replace("</h3><p>", "</h3>\n<p>", $content);
         $content = str_replace("</h4><p>", "</h4>\n<p>", $content);
+        $content = str_replace("<thead><", "<thead>\n<", $content);      
+        $content = str_replace("</thead><", "</thead>\n<", $content);
+        $content = str_replace("<tr><", "<tr>\n<", $content);
+        $content = str_replace("</tr><", "</tr>\n<", $content);        
+        $content = str_replace("</td><", "</td>\n<", $content);
+        
 
         $content = str_replace("\n\n", "\n", $content);
 
@@ -84,7 +90,8 @@ class SecurityChecker {
     }
 
     private static function multiples_espaces($string) {
-        return trim(preg_replace('/ {2,}/', ' ', $string));
+        // $string = trim(preg_replace('/ {2,}/', ' ', $string));
+        return preg_replace('/\s+/', ' ', $string);
     }
 
     private static function tags_autorises($str) {
