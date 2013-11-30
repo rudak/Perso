@@ -15,8 +15,8 @@ namespace Perso\Tools\Classes;
 #                     $resizeObj -> resizeImage(150, 100, 0);
 #                     $resizeObj -> saveImage('images/cars/large/output.jpg', 100);
 #
-   #
-   # ========================================================================#
+#
+# ========================================================================#
 
 Class ResizeImage {
 
