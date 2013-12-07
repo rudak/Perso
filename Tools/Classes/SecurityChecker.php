@@ -69,7 +69,6 @@ class SecurityChecker {
         $content = str_replace("</tr><", "</tr>\n<", $content);        
         $content = str_replace("</td><", "</td>\n<", $content);
         
-
         $content = str_replace("\n\n", "\n", $content);
 
         return $content;
