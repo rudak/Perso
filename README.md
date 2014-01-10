@@ -15,6 +15,7 @@ Ensuite on peut utiliser :
     Ces fonctions :    
     
     ##loremipsum
+
     La fonction loremipsum(nb,point) permet de retourner dynamiquement un nombre 
     de mots aléatoirement piochés dans les phrases typiques de Lorem Ipsum.
     
@@ -39,6 +40,28 @@ Et ensuite le code est assez simple, voici un exemple de méthode tres simple :
 
 Voila, rien de plus, l'image est compressée et remplace désormais l'ancienne.
 
+---
+
+## CustomCanonicalizer ##
+Petite classe qui canonicalize les noms et mails pour le FosUserBundle, en réalité c'est du simple slugage...
+
+Pour la config :
+
+    # app/config/config.yml
+    fos_user:
+        service:
+            email_canonicalizer:    my_canonicalizer
+            username_canonicalizer: my_canonicalizer
+        
+    services:
+        my_canonicalizer:
+            class: Perso\Tools\Slug\CustomCanonicalizer
+            public: false 
+
+Rien de sorcier donc et on a un canonicalizer qui slug les machins
+
+---
+ 
 #Views
 ##Mentions légales
 J'ai mis une vue correspondant à une page de mentions légales, c'est pratique vu qu'elle est assez générique pour etre collée un peu partout. Il faut juste lui envoyer un tableau rempli avec ce qu'il faut et en avant...
@@ -75,4 +98,3 @@ Et dans la vue contenant le reste de votre site vous pouvez faire un include de 
     {% include '@vues_perso/mentions-legales.html.twig' %}
 
 Et c'est tout. C'est presque plus long à lire qu'à mettre en place...
-
