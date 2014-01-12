@@ -61,7 +61,12 @@ Pour la config :
 Rien de sorcier donc et on a un canonicalizer qui slug les machins
 
 ---
- 
+## Picture ##
+
+Classe a étendre avec une entité pour disposer d'une photo de profile, utile
+pour une classe User perso par exemple...
+
+---
 #Views
 ##Mentions légales
 J'ai mis une vue correspondant à une page de mentions légales, c'est pratique vu qu'elle est assez générique pour etre collée un peu partout. Il faut juste lui envoyer un tableau rempli avec ce qu'il faut et en avant...

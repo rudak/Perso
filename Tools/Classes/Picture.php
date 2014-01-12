@@ -6,7 +6,28 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Perso\Tools\Classes\ResizeImage;
-
+/**
+ * Vu que les callbacks ne se répercutent pas sur les couches d'abstraction 
+ * parentes, penser a rediriger les callbacks d'upload, d'update et de remove
+ * dans la classe qui extends celle ci.
+ *      
+ *      @ORM\PrePersist()
+ *      @ORM\PreUpdate()
+ *      public function preCallBack() {
+ *          $this->preUpload();
+ *      }
+ * 
+ *      @ORM\PostPersist()
+ *      @ORM\PostUpdate()
+ *      public function postCallBack() {
+ *          $this->upload();
+ *      }
+ * 
+ *      @ORM\PostRemove()
+ *      public function postRemoveCallback() {
+ *          $this->removeUpload();
+ *      }
+ */
 abstract class Picture {
 
     /**
