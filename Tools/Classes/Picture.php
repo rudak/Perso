@@ -11,19 +11,19 @@ use Perso\Tools\Classes\ResizeImage;
  * parentes, penser a rediriger les callbacks d'upload, d'update et de remove
  * dans la classe qui extends celle ci.
  *      
- *      @ORM\PrePersist()
- *      @ORM\PreUpdate()
+ *      ORM\PrePersist()
+ *      ORM\PreUpdate()
  *      public function preCallBack() {
  *          $this->preUpload();
  *      }
  * 
- *      @ORM\PostPersist()
- *      @ORM\PostUpdate()
+ *      ORM\PostPersist()
+ *      ORM\PostUpdate()
  *      public function postCallBack() {
  *          $this->upload();
  *      }
  * 
- *      @ORM\PostRemove()
+ *      ORM\PostRemove()
  *      public function postRemoveCallback() {
  *          $this->removeUpload();
  *      }
