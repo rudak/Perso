@@ -11,7 +11,7 @@ class Encrypter {
 
     static $iterations = 1583;
 
-    static function encrypt($plainPassword, $salt) {
+    static function encrypt($plainPassword, $salt=null) {        
         $i = 0;
         $out = '';
         do {
