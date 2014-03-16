@@ -11,6 +11,10 @@ class MyController extends Controller
 
     protected function setFlashMessage($message, $type = 'info')
     {
+        $type = strtolower($type);
+        if (!in_array($type, array('danger', 'info', 'warning', 'primary', 'success'))) {
+            throw $this->createNotFoundException('ce type n\'existe pas');
+        }
         $this->get('session')->getFlashBag()->add(
                 $type, $message
         );
