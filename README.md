@@ -103,3 +103,4 @@ Et dans la vue contenant le reste de votre site vous pouvez faire un include de 
     {% include '@vues_perso/mentions-legales.html.twig' %}
 
 Et c'est tout. C'est presque plus long à lire qu'à mettre en place...
+(Y a rien a jour la dedans faudra que je vois ca...)
