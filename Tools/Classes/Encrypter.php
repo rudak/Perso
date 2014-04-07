@@ -9,11 +9,13 @@ use Symfony\Component\Security\Core\Encoder\PasswordEncoderInterface;
  *
  * @author Rudak
  */
-class Encrypter implements PasswordEncoderInterface {
+class Encrypter implements PasswordEncoderInterface
+{
 
     static $iterations = 1583;
 
-    static function encodePassword($plainPassword, $salt = null) {
+    static function encodePassword($plainPassword, $salt = null)
+    {
         $i = 0;
         $out = '';
         do {
@@ -23,7 +25,8 @@ class Encrypter implements PasswordEncoderInterface {
         return substr($out, 0, 20);
     }
 
-    public function isPasswordValid($encoded, $raw, $salt) {
+    public function isPasswordValid($encoded, $raw, $salt)
+    {
         return $encoded === $this->encodePassword($raw, $salt);
     }
 
